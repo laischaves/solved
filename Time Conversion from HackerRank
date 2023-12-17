@@ -1,0 +1,42 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'timeConversion' function below.
+#
+# The function is expected to return a STRING.
+# The function accepts STRING s as parameter.
+#
+
+def timeConversion(s):
+    # Write your code here
+    # consider that the limit is 23:59
+    # it should be s + 12 if its PM; 12AM -> 00
+    if int(s[:2])<12 and s[8:] == 'PM':
+        hours = int(s[:2])+12
+    elif int(s[:2]) == 12 and s[8:] == 'AM':
+        hours = '00'
+    elif s[8:] == 'AM' or (int(s[:2]) == 12 and s[8:] == 'PM'):
+        hours = (s[:2])
+
+    return ("{}{}".format(str(hours), s[2:8]))
+
+    
+
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = timeConversion(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
